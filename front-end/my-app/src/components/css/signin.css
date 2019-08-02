@@ -1,0 +1,82 @@
+.container {
+    /* box-sizing:border-box; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(114, 194, 255, 0.9);
+    height: 100vh;
+}
+
+.illustration-container {
+    height:50vh;  
+   
+}
+
+img {
+    width: 480px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 3rem;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 0 1.5rem;
+    background: #d9eeff;
+    height: 45vh;
+    margin-bottom: 3.5rem;
+}
+
+.form-container>h1 {
+    margin-bottom: 2rem;
+}
+
+form {
+    display: flex;
+    width: 20rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4.5rem;
+}
+
+input {
+    width: 15rem;
+    margin: 0.5rem 0;
+    line-height: 1.5rem;
+}
+
+.btn {
+    border: none;
+    border-radius: 2px;
+    background: #428bca;
+    color: white;
+}
+
+.btn:hover {
+    background: rgba(66, 139, 202, 0.7);
+}
+
+.signInBtn {
+    width: 7rem;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    padding: 7px 0px;
+}
+
+.form-container > p {
+    font-size: 1.1rem;
+    margin-top: 3rem;
+}
+
+.regBtn {
+    padding: 0.3rem 0.5rem;
+    margin-left: 0.5rem;
+}
+
