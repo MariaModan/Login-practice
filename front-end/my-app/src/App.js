@@ -13,7 +13,6 @@ class App extends React.Component {
         email: 'maria@gmail.com',
         password: '123'
       },
-      isLoggedIn: true,
       route: 'signin'
     }
   }
@@ -28,9 +27,9 @@ class App extends React.Component {
     return (
       <div className="App">
         {
-          this.state.isLoggedIn === true ? <Home name={this.state.user.name}/>
+          this.state.route === 'home' ? <Home name={this.state.user.name} onRouteChange={this.onRouteChange}/>
             : (
-              this.state.route === 'register' ? <Register /> : <SignIn />
+              this.state.route === 'register' ? <Register onRouteChange={this.onRouteChange}/> : <SignIn onRouteChange={this.onRouteChange}/>
             )
         }
       </div>
