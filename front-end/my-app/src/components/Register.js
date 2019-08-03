@@ -12,6 +12,24 @@ class Register extends React.Component {
         }
     }
 
+    onNameChange = (ev) => {
+        this.setState ({
+            name: ev.target.value
+        });
+    }
+
+    onEmailChange = (ev) => {
+        this.setState ({
+            email: ev.target.value
+        });
+    }
+
+    onPasswordChange = (ev) => {
+        this.setState ({
+            password: ev.target.value
+        });
+    }
+
     render() {
         return(
             <div className='container'>
@@ -19,11 +37,29 @@ class Register extends React.Component {
                     <h1>Register</h1>
                     <form >
                         <label htmlFor='name'/>
-                        <input type='text' name='name' id='name' placeholder=' Name'/>
+                        <input 
+                            type='text' 
+                            name='name' 
+                            id='name' 
+                            placeholder=' Name'
+                            onChange={this.onNameChange}/>
+
                         <label htmlFor='email'/>
-                        <input type='email' name='email' id='email' placeholder=' Email'/>
+                        <input 
+                            type='email' 
+                            name='email' 
+                            id='email' 
+                            placeholder=' Email'
+                            onChange={this.onEmailChange}/>
+
                         <label htmlFor='password'/>
-                        <input type='password' name='password' id='password' placeholder=' Password'/>
+                        <input 
+                            type='password' 
+                            name='password' 
+                            id='password' 
+                            placeholder=' Password'
+                            onChange={this.onPasswordChange}/>
+                            
                         <button 
                             type='submit' 
                             id='button' 

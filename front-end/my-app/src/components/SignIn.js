@@ -11,6 +11,18 @@ class SignIn extends React.Component {
         }
     }
 
+    onEmailChange = (ev) => {
+        this.setState ({
+            email: ev.target.value
+        });
+    }
+
+    onPasswordChange = (ev) => {
+        this.setState ({
+            password: ev.target.value
+        });
+    }
+
     render () {
         return(
             <div className='container'>
@@ -22,9 +34,21 @@ class SignIn extends React.Component {
                     <h1>Sign In</h1>
                     <form >
                         <label htmlFor='email'/>
-                        <input type='email' name='email' id='email' placeholder=' Email'/>
+                        <input 
+                            type='email' 
+                            name='email' 
+                            id='email' 
+                            placeholder=' Email'
+                            onChange={this.onEmailChange}/>
+                            
                         <label htmlFor='password'/>
-                        <input type='password' name='password' id='password' placeholder=' Password'/>
+                        <input 
+                            type='password' 
+                            name='password' 
+                            id='password' 
+                            placeholder=' Password'
+                            onChange={this.onPasswordChange}/>
+
                         <button 
                             type='submit' 
                             id='button' 
