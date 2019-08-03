@@ -33,7 +33,7 @@ class Register extends React.Component {
     render() {
         return(
             <div className='container'>
-                <div className='form-container'>
+                <div className='reg-form-container'>
                     <h1>Register</h1>
                     <form >
                         <label htmlFor='name'/>
@@ -59,7 +59,7 @@ class Register extends React.Component {
                             id='password' 
                             placeholder=' Password'
                             onChange={this.onPasswordChange}/>
-                            
+
                         <button 
                             type='submit' 
                             id='button' 
@@ -68,7 +68,7 @@ class Register extends React.Component {
                     </form>
                     <p>Already have an account?
                     <button 
-                        className='signInBtn btn' 
+                        className='regSignInBtn btn' 
                         onClick={()=> this.props.onRouteChange('signin')}>Sign in</button></p>
                 </div> 
                 <div className='illustration-container'>
