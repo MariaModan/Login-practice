@@ -13,7 +13,7 @@ class App extends React.Component {
         email: 'maria@gmail.com',
         password: '123'
       },
-      isLoggedIn: false,
+      isLoggedIn: true,
       route: 'signin'
     }
   }

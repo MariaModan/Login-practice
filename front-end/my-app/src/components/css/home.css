@@ -1,0 +1,40 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    background: rgba(114, 194, 255, 0.67);
+    height: 100vh;
+    margin: 0;
+}
+
+nav {
+    align-self: flex-end;
+    cursor: pointer;
+    margin: 2rem 3rem 0 0;
+    font-size: 1.3rem;
+
+}
+
+nav:hover{
+    text-decoration: underline;
+}
+
+.content {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.3rem;
+}
+
+p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 0;
+}
+

@@ -1,9 +1,16 @@
 import React from 'react';
+import picture from '../img/smiley.svg';
+import './css/home.css';
 
 const Home = ({name}) => {
     return(
-        <div>
-            <h2>{`Welcome back ${name}`}</h2>
+        <div className='home-container'>
+            <nav>Sign Out</nav>
+            <div className='content'>
+                <h1 className='greeting'>{`Welcome back ${name}`}</h1>
+                <p>I hope you're having an amazing day!</p>
+                <img src={picture} alt='two people and a smiley face'/>
+            </div>
         </div>
     );
 }
