@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); //we need this so the front-end can                                      fetch from the localhost
 
 const app = express();
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(cors());
 
 const users = [
     {
@@ -27,24 +29,24 @@ app.get('/', (req,res) => {
 })
 
 app.post('/signin', (req,res) => {
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
     if(email === users[0].email && password === users[0].password){
-        res.send('success')
+        res.json(users[0])
     } else {
-        res.send('could not log in')
+        res.status(400).json('could not log in')
     }
 })
 
 app.post('/register', (req,res) => {
     const { name, email, password } = req.body;
     users.push({
-        id: '4',
+        id: '6',
         name: name,
         email: email,
         password: password,
         dateJoined: new Date()
     })
-    res.send(users[users.length-1]);
+    res.json(users[users.length-1]);
 })
 
 app.listen(3005, () => {
