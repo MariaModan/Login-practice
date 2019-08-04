@@ -30,6 +30,30 @@ class Register extends React.Component {
         });
     }
 
+    onSubmitRegister = (ev) => {
+        ev.preventDefault();
+
+        fetch('http://localhost:3005/register', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password,
+                dateJoined: new Date()
+            })
+        })
+            .then( response => response.json())
+            .then( user => {
+                console.log(user)
+                if (user){
+                    this.props.loadUser(user);
+                    console.log(user);
+                    this.props.onRouteChange('home');
+                }
+            })  
+    }
+
     render() {
         return(
             <div className='container'>
@@ -64,7 +88,7 @@ class Register extends React.Component {
                             type='submit' 
                             id='button' 
                             className='signUpBtn btn' 
-                            onClick={()=> this.props.onRouteChange('home')}>Sign up</button>
+                            onClick={this.onSubmitRegister}>Sign up</button>
                     </form>
                     <p>Already have an account?
                     <button 

@@ -23,6 +23,27 @@ class SignIn extends React.Component {
         });
     }
 
+    onSubmitSignIn = (ev) => {
+        ev.preventDefault();
+
+        fetch('http://localhost:3005/signin', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data){
+                    this.props.loadUser(data);
+                }
+            })
+            .catch( err => console.log(err));        
+    }
+
+
     render () {
         return(
             <div className='container'>
@@ -53,7 +74,7 @@ class SignIn extends React.Component {
                             type='submit' 
                             id='button' 
                             className='signInBtn btn' 
-                            onClick={() => this.props.onRouteChange('home')}>Sign in</button>
+                            onClick={this.onSubmitSignIn}>Sign in</button>
                     </form>
                     <p>Don't have an account?
                     <button 

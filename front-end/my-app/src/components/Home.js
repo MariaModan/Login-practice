@@ -2,10 +2,10 @@ import React from 'react';
 import picture from '../img/smiley.svg';
 import './css/home.css';
 
-const Home = ({name, onRouteChange}) => {
+const Home = ({name, signOutUser}) => {
     return(
         <div className='home-container'>
-            <nav onClick={() => onRouteChange('signin')}>Sign Out</nav>
+            <nav onClick={signOutUser}>Sign Out</nav>
             <div className='content'>
                 <h1 className='greeting'>{`Welcome back ${name}`}</h1>
                 <p>I hope you're having an amazing day!</p>

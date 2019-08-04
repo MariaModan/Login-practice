@@ -9,9 +9,10 @@ class App extends React.Component {
     super();
     this.state = {
       user: {
-        name: 'Maria',
-        email: 'maria@gmail.com',
-        password: '123'
+        id: '',
+        name: '',
+        email: '',
+        dateJoined: ''
       },
       route: 'signin'
     }
@@ -23,13 +24,37 @@ class App extends React.Component {
     })
   }
 
+  loadUser = (data) => {
+    this.setState({
+      user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        dateJoined: data.dateJoined
+      }
+    });
+    this.onRouteChange('home');
+  }
+
+  signOutUser = () => {
+    this.setState({
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        dateJoined: ''
+      },
+    });
+    this.onRouteChange('signin');
+  }
+
   render(){
     return (
       <div className="App">
         {
-          this.state.route === 'home' ? <Home name={this.state.user.name} onRouteChange={this.onRouteChange}/>
+          this.state.route === 'home' ? <Home name={this.state.user.name} signOutUser={this.signOutUser}/>
             : (
-              this.state.route === 'register' ? <Register onRouteChange={this.onRouteChange}/> : <SignIn onRouteChange={this.onRouteChange}/>
+              this.state.route === 'register' ? <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/> : <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
             )
         }
       </div>
