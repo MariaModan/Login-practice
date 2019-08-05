@@ -1,6 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); //we need this so the front-end can                                      fetch from the localhost
+const knex = require('knex');
+
+const postgres = knex({
+    client: 'pg',
+    connection: {
+      host : '127.0.0.1',
+      user : 'postgres',
+      password : 'aA123adata',
+      database : 'loginpractice'
+    }
+  });
 
 const app = express();
 
@@ -39,14 +50,18 @@ app.post('/signin', (req,res) => {
 
 app.post('/register', (req,res) => {
     const { name, email, password } = req.body;
-    users.push({
-        id: '6',
+    postgres('users')
+        .returning('*')
+        .insert({
         name: name,
         email: email,
-        password: password,
-        dateJoined: new Date()
+        datejoined: new Date()
     })
-    res.json(users[users.length-1]);
+        .then( response => {
+        console.log(response)
+        res.json(response)
+    })
+
 })
 
 app.listen(3005, () => {
