@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); //we need this so the front-end can                                      fetch from the localhost
 const knex = require('knex');
+const bcrypt = require('bcrypt');
 
 const postgres = knex({
     client: 'pg',
@@ -12,7 +13,7 @@ const postgres = knex({
       database : 'loginpractice'
     }
   });
-
+postgres.select('*').from('users').then(data => console.log(data))
 const app = express();
 
 app.use(bodyParser.json());
@@ -50,18 +51,34 @@ app.post('/signin', (req,res) => {
 
 app.post('/register', (req,res) => {
     const { name, email, password } = req.body;
-    postgres('users')
-        .returning('*')
-        .insert({
-        name: name,
-        email: email,
-        datejoined: new Date()
-    })
-        .then( response => {
-        console.log(response)
-        res.json(response)
-    })
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
 
+    postgres.transaction( trx => {
+        trx.insert({
+                email: email,
+                hash: hash
+            })
+            .into('login')
+            .returning('email')
+            .then( loginEmail => {
+                return trx('users')
+                        .insert({
+                            name: name,
+                            email: loginEmail[0],//loginEmail gets returned as an array so we need to use [0]
+                            joined: new Date()
+                        })
+                        .returning('*')
+            })
+            .then( user => {
+                //the promise return an array with just one element so we need to grab user[0] to access the user who just registered
+                res.json(user[0])
+            })
+            .then(trx.commit)
+            .catch(err => res.status(400).json('1unable to register'))
+        .catch(err => res.status(400).json('2unable to register'))
+            
+    })
 })
 
 app.listen(3005, () => {
