@@ -13,40 +13,33 @@ const postgres = knex({
       database : 'loginpractice'
     }
   });
-postgres.select('*').from('users').then(data => console.log(data))
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const users = [
-    {
-        id: '1',
-        name: 'Maria',
-        email: 'maria@gmail.com',
-        password: '123',
-        dateJoined: new Date ()
-    },
-    {
-        id: '2',
-        name: 'boo',
-        email: 'spoo@gmail.com',
-        password: 'boop',
-        dateJoined: new Date()
-    }
-];
-
-app.get('/', (req,res) => {
-    res.send(users)
-})
-
 app.post('/signin', (req,res) => {
     const { email, password } = req.body;
-    if(email === users[0].email && password === users[0].password){
-        res.json(users[0])
-    } else {
-        res.status(400).json('could not log in')
-    }
+    
+    postgres.select('email', 'hash').from('login')
+        .where('email', '=', email)
+        .then(data => {
+            const isValid = bcrypt.compareSync(password, data[0].hash)
+            if (isValid) {
+                return postgres.select('*')
+                                .from('users')
+                                .where('email', '=', email)
+                                .then( user => {
+                                    res.json(user[0])
+                                })
+                                .catch(err => res.status(400).json('unable to log in'))
+            } else {
+                res.status(400).json('credentials do not match')
+            }
+        })
+        .catch(err => res.status(400).json('unable to log in'))
+        
 })
 
 app.post('/register', (req,res) => {
