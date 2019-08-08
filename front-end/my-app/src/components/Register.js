@@ -33,14 +33,13 @@ class Register extends React.Component {
     onSubmitRegister = (ev) => {
         ev.preventDefault();
 
-        fetch('http://localhost:3005/register', {
+        fetch('https://nameless-scrubland-88522.herokuapp.com/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 name: this.state.name,
                 email: this.state.email,
-                password: this.state.password,
-                dateJoined: new Date()
+                password: this.state.password
             })
         })
             .then( response => response.json())
@@ -50,6 +49,7 @@ class Register extends React.Component {
                     this.props.onRouteChange('home');
                 }
             })
+            .catch(err => console.log('couldn\'t load user'))
               
     }
 
