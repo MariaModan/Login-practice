@@ -8,13 +8,14 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
+      //change these back to empty strings after you're done building the to do app interface
       user: {
-        id: '',
-        name: '',
+        id: '1',
+        name: 'Maria',
         email: '',
         dateJoined: ''
       },
-      route: 'signin'
+      route: 'home'
     }
   }
 
@@ -42,7 +43,8 @@ class App extends React.Component {
         id: '',
         name: '',
         email: '',
-        dateJoined: ''
+        dateJoined: '',
+        
       },
     });
     this.onRouteChange('signin');
@@ -52,7 +54,7 @@ class App extends React.Component {
     return (
       <div className="App">
         {
-          this.state.route === 'home' ? <Home name={this.state.user.name} signOutUser={this.signOutUser}/>
+          this.state.route === 'home' ? <Home user={this.state.user} signOutUser={this.signOutUser}/>
             : (
               this.state.route === 'register' ? <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/> : <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
             )
