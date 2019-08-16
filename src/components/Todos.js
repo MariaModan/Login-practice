@@ -1,11 +1,18 @@
 import React from 'react';
 import TodoItem from './TodoItem'
 
-const Todos = (  ) => {
+const Todos = ( {todoList} ) => {
+    return(
+        <div>
+            {todoList.map((item, index) => 
+                <TodoItem key={index} title={item} />
+            )}
+        </div>
+    )
 
-    return this.props.todoList.map( (item, index) => {
-            <TodoItem key={index} title={item}/>
-        })
+    // return props.todoList.map( (item, index) => {
+    //         <TodoItem key={index} title={item}/>
+    //     })
 }
 
 export default Todos;

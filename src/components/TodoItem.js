@@ -3,7 +3,10 @@ import React from 'react';
 const TodoItem = ({title}) => {
     return(
         <div>
-            {title}
+            <p>
+                <input type='checkbox' />
+                {title}
+            </p>
         </div>
     )
 }
