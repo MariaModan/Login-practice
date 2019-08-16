@@ -1,13 +1,37 @@
 import React from 'react';
 
-const AddTodo = ({onInputChange, submitTodo}) => {
+class AddTodo extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            input: ''
+        }
+    }
    
+    submitTodo = (ev) => {
+        ev.preventDefault();
+        this.props.addTodo(this.state.input);
+        this.setState({
+            input: ''
+        })
+        
+    }
+
+    onInputChange = (ev) => {
+        this.setState({
+            input: ev.target.value
+        })
+    }
+
+    render() {
         return (
-            <div>
-              <input type='text' placeholder="Add task..." onChange={onInputChange}></input>
-              <button type='submit' onClick={submitTodo}>Add</button>  
-            </div>
-        )    
+            <form onSubmit={this.submitTodo}>
+              <input type='text' placeholder="Add task..." value={this.state.input} onChange={this.onInputChange}></input>
+              <button type='submit' >Add</button>  
+            </form>
+        ) 
+    }
+           
 }
 
 export default AddTodo;

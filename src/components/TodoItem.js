@@ -2,12 +2,10 @@ import React from 'react';
 
 const TodoItem = ({title}) => {
     return(
-        <div>
-            <p>
-                <input type='checkbox' />
-                {title}
-            </p>
-        </div>
+        <p class='todoItem'>
+            <input type='checkbox' />
+            {title}
+        </p>
     )
 }
 
