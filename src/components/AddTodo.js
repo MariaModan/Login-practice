@@ -26,7 +26,7 @@ class AddTodo extends React.Component{
     render() {
         return (
             <form onSubmit={this.submitTodo}>
-              <input type='text' placeholder="Add task..." value={this.state.input} onChange={this.onInputChange}></input>
+              <input type='text' placeholder=" Add task..." value={this.state.input} onChange={this.onInputChange}></input>
               <button type='submit' >Add</button>  
             </form>
         ) 

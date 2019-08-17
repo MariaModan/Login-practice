@@ -19,7 +19,7 @@ nav:hover{
 }
 
 .content {
-    height: 75vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
