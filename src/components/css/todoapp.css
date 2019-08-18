@@ -41,8 +41,25 @@ form > button {
 .todoItem {
     margin: 0;
     padding-top: 0.5em;
+    width: 100%;
+    text-align: left;
+}
+
+.todoItem:nth-child(odd) {
+    background: rgba(114, 194, 255, 0.3);
 }
 
 .todoItem > input {
     width: 20px;
+    margin-left: 5px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.delBtn {
+    border-radius: 50%;
+    float: right;
+    margin-right: 5px;
 }
