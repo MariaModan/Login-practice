@@ -12,7 +12,7 @@ class TodoApp extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:3005/todolist', {
+        fetch('https://nameless-scrubland-88522.herokuapp.com/todolist', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({'email': this.props.user.email})    
@@ -28,7 +28,7 @@ class TodoApp extends React.Component {
     }
 
     addTodo = (input) => {
-        fetch('http://localhost:3005/addtodo', {
+        fetch('https://nameless-scrubland-88522.herokuapp.com/addtodo', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -45,7 +45,7 @@ class TodoApp extends React.Component {
     }
 
     toggleComplete = (id) => {
-        fetch('http://localhost:3005/completed', {
+        fetch('https://nameless-scrubland-88522.herokuapp.com/completed', {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -66,7 +66,7 @@ class TodoApp extends React.Component {
     }
 
     delTodo = (id) => {
-        fetch('http://localhost:3005/deltodo', {
+        fetch('https://nameless-scrubland-88522.herokuapp.com/deltodo', {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
