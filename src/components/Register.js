@@ -46,7 +46,6 @@ class Register extends React.Component {
             .then( user => {
                 if (user){
                     this.props.loadUser(user);
-                    this.props.onRouteChange('home');
                 }
             })
             .catch(err => console.log('couldn\'t load user'))

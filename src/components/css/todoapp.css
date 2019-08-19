@@ -11,7 +11,7 @@
 
 
 /* <AddTodo /> */
-form {
+.addTodoForm {
     display: inline-block;
     width:100%;
     height: 27px;
@@ -21,7 +21,7 @@ form {
     box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.5);
 }
 
-form>input {
+.addTodoForm>input {
     width: 85%;
     height: 25px;
     margin: 0;
@@ -29,7 +29,7 @@ form>input {
     border: 1px solid #ddd;
 }
 
-form > button {
+.addTodoForm > button {
     width: 14%;
     height: 25px;
     border: 3px solid #ddd;

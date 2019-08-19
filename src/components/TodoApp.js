@@ -7,46 +7,77 @@ class TodoApp extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            todoList: [
-                {title: 'walk the dog',
-                completed: false,
-                id: '1'}, 
-                {title: 'feed the cat',
-                completed: false,
-                id: '2'}, 
-                {title: 'do laundry',
-                completed: false,
-                id: '3'}
-            ],
+            todoList: []
         }
+    }
+
+    componentDidMount(){
+        fetch('http://localhost:3005/todolist', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({'email': this.props.user.email})    
+            })
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    todoList: data
+                })
+            })
+            .catch( err => console.log('unable to get todolist'))
+
     }
 
     addTodo = (input) => {
-        const newTodo = {
-            title: input,
-            id: '4',
-            completed: false
-        }
-        this.setState({
-            todoList: [...this.state.todoList, newTodo]
-        })
+        fetch('http://localhost:3005/addtodo', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'email': this.props.user.email,
+                'title': input
+            })    
+            })
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    todoList: [...this.state.todoList, data[0]]
+                })
+            })
     }
 
     toggleComplete = (id) => {
-        this.setState({
-            todoList: this.state.todoList.map( item => {
-                if (item.id === id) {
-                    item.completed = !item.completed
-                }
-                return item;
+        fetch('http://localhost:3005/completed', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'id': id
+            })    
             })
-        })
+            .then(response => {
+                this.setState({
+                    todoList: this.state.todoList.map( item => {
+                        if (item.id === id) {
+                            item.completed = !item.completed
+                        }
+                        return item;
+                    })
+                })
+            })
+        
     }
 
     delTodo = (id) => {
-        this.setState({
-            todoList: [...this.state.todoList].filter(item => item.id !==id)
-        })
+        fetch('http://localhost:3005/deltodo', {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'id': id
+            })    
+            })
+            .then( response => {
+                this.setState({
+                    todoList: [...this.state.todoList].filter(item => item.id !==id)
+                })
+            })
     }
 
     render (){
