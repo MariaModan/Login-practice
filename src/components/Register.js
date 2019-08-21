@@ -33,7 +33,7 @@ class Register extends React.Component {
     onSubmitRegister = (ev) => {
         ev.preventDefault();
 
-        fetch('https://nameless-scrubland-88522.herokuapp.com/register', {
+        fetch('https://fullstack-todolost-app-backend.herokuapp.com/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
